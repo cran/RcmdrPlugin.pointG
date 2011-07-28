@@ -1,0 +1,5 @@
+useDynLib(Rcmdr)
+
+exportPattern(".")
+
+import(Rcmdr,tcltk,MASS, lattice, qgraph, VIM, maps, YaleToolkit, ade4, effects, RColorBrewer,Hmisc, car,rgl)

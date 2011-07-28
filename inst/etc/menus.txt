@@ -1,0 +1,55 @@
+# Some Rcmdr menus
+# When the plug-in is loaded, these menus are merged with the standard Rcmdr menus
+
+# last modified: 22 July 2011 by S. CHAMPELY
+
+#   type    menu/item      operation/parent  label                              command/menu                activation    install?
+menu    demosMenu       topMenu         ""                                      ""                          ""                      "" 
+item    topMenu         cascade         "pointG"                                 demosMenu                   ""                      ""
+
+   menu    netMenu           demosMenu  ""                                              ""                          ""          ""
+    item    demosMenu  cascade         "Nettoyage"                                netMenu                       ""          ""
+    item    netMenu           command         "Que sais-je?"                                nettoyage0                  ""          ""
+    item    netMenu           command         "Valeurs manquantes"                            aaggr0              ""          ""
+  
+
+# univ
+    menu    univMenu           demosMenu  ""                                              ""                          ""          ""
+    item    demosMenu  cascade         "Analyses univariées"                                univMenu                       ""          ""
+    item    univMenu           command         "Graphiques à plat"                            uunivariate0              ""          ""
+    item    univMenu           command         "Bref."                            bbref0              ""          ""
+    item    univMenu           command         "Statistiques à plat"                                sSummarydf0                  ""          ""
+    item    univMenu           command         "Graphiques pour échelles de Likert"                        pplotLikert0           ""          ""
+
+
+# signal
+    menu    signalMenu           demosMenu  ""                                              ""                          ""          ""
+    item    demosMenu  cascade         "Signaletique"                                signalMenu                       ""          ""
+ 
+   item    signalMenu           command         "Pyramide des ages"                        ppyramide0           ""          ""
+   item    signalMenu           command         "Donnees de cadrage"                        cadrage0           ""          ""
+   item    signalMenu           command         "Cartographie chalandise par dép."                        cchalandise.DEP0           ""          ""
+ 
+
+# biv
+    menu    bivMenu           demosMenu  ""                                              ""                          ""          ""
+    item    demosMenu  cascade         "Analyses bivariées"                                bivMenu                       ""          ""
+   item    bivMenu           command         "Table croisée"                                twoWayTable0                  ""          ""
+    item    bivMenu           command         "Graphiques croisés en saucisson"                            bbivariate0              ""          ""
+  item    bivMenu           command         "Statistiques croisées en saucisson"                                bbisummarize0                  ""          ""
+    item    bivMenu           command         "Graphiques croisés complet"                        ccroise0           ""          ""
+   item    bivMenu           command         "Graphique des relations"                        bbigraphe0           ""          ""
+ 
+
+
+ 
+# lin
+    menu    linMenu           demosMenu  ""                                              ""                          ""          ""
+    item    demosMenu  cascade         "Modélisation linéaire"                                linMenu                       ""          ""
+    item    linMenu           command         "Ajustement"                                llinear0                  ""          ""
+    item    linMenu           command         "Graphique des effets"                        effectPlots           ""          ""
+
+# exp
+    menu    facMenu           demosMenu  ""                                              ""                          ""          ""  
+   item    demosMenu  cascade         "Exploratoire multivarie"                                facMenu                       ""          ""
+ item    facMenu       command         "Factoriel multivarie"   mmultivariate0 ""                      ""
