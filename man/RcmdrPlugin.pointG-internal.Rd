@@ -6,7 +6,7 @@
 
 \alias{pem}
 
-\alias{pplotLikert0}
+\alias{ppplotLikert0}
 
 \alias{bbref0}
 \alias{bref.df0}
@@ -28,7 +28,7 @@
 
 \alias{uunivariate0}
 
-\alias{bbivariate0}
+\alias{bbbivariate0}
 
 \alias{bigraphe0}
 \alias{bbigraphe0}
@@ -43,7 +43,7 @@
 \alias{cchalandise.DEP0}
 \alias{chalandise.DEP0}
 
-\alias{bbisummarize0}
+\alias{bbbisummarize0}
 
 \alias{llinear0}
 
@@ -52,6 +52,10 @@
 
 \alias{ccroise0}
 
+\alias{Yule1}
+\alias{Yule2}
+\alias{Yule3}
+\alias{Yule4}
 
 
 \description{Internal RcmdrPlugin.pointG objects.}

@@ -7,7 +7,7 @@ X <- as.matrix(X)
         Mean <- apply(X, 2, mean, na.rm = TRUE)
         Min <- min(X,na.rm = TRUE)
         Max <- max(X,na.rm = TRUE)
-        dotchart(sort(Mean), xlim = c(Min, Max),pch=16,col=rev(brewer.pal(3,name="PuRd"))[1], ...)
+        dotchart(sort(Mean), xlim = c(Min, Max),pch=16,color=rev(brewer.pal(3,name="PuRd"))[1], ...)
 }
 else{
 X<-XXX[,-1]

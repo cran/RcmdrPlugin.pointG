@@ -19,7 +19,7 @@ item    topMenu         cascade         "pointG"                                
     item    univMenu           command         "Graphiques à plat"                            uunivariate0              ""          ""
     item    univMenu           command         "Bref."                            bbref0              ""          ""
     item    univMenu           command         "Statistiques à plat"                                sSummarydf0                  ""          ""
-    item    univMenu           command         "Graphiques pour échelles de Likert"                        pplotLikert0           ""          ""
+    item    univMenu           command         "Graphiques pour échelles de Likert"                        ppplotLikert0           ""          ""
 
 
 # signal
@@ -35,8 +35,8 @@ item    topMenu         cascade         "pointG"                                
     menu    bivMenu           demosMenu  ""                                              ""                          ""          ""
     item    demosMenu  cascade         "Analyses bivariées"                                bivMenu                       ""          ""
    item    bivMenu           command         "Table croisée"                                twoWayTable0                  ""          ""
-    item    bivMenu           command         "Graphiques croisés en saucisson"                            bbivariate0              ""          ""
-  item    bivMenu           command         "Statistiques croisées en saucisson"                                bbisummarize0                  ""          ""
+    item    bivMenu           command         "Graphiques croisés en saucisson"                            bbbivariate0              ""          ""
+  item    bivMenu           command         "Statistiques croisées en saucisson"                                bbbisummarize0                  ""          ""
     item    bivMenu           command         "Graphiques croisés complet"                        ccroise0           ""          ""
    item    bivMenu           command         "Graphique des relations"                        bbigraphe0           ""          ""
  

@@ -12,8 +12,8 @@ This package provides an Rcmdr "plug-in" for studying questionnaire data.
 \tabular{ll}{
 Package: \tab RcmdrPlugin.Gpoint\cr
 Type: \tab Package\cr
-Version: \tab 0.1\cr
-Date: \tab 2011-07-18\cr
+Version: \tab 0.2.1\cr
+Date: \tab 2012-02-14\cr
 License: \tab GPL (>= 2)\cr
 }
 }

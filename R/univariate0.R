@@ -15,7 +15,7 @@ if(length(table(X[,j]))<6){pie(rev(sort(table(X[,j]))),main = noms[j],col=rev(br
 else{
                   www <- as.numeric(table(X[, j]))
                   names(www) <- names(table(X[, j]))
-                  dotchart(sort(www), main = noms[j],pch=16,col=rev(brewer.pal(3,name="PuRd"))[1])
+                  dotchart(sort(www), main = noms[j],pch=16,color=rev(brewer.pal(3,name="PuRd"))[1])
 }
                 }
                 else {
