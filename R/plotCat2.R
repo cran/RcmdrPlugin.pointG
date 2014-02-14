@@ -4,7 +4,7 @@ function (X, LI, ...)
     tab.cat <- data.frame(X[, sapply(X, is.factor)])
     names(tab.cat) <- names(X)[sapply(X, is.factor)]
     if (ncol(tab.cat) > 0.5) {
-        windows()
+        dev.new()
 if(ncol(tab.cat)==3){fen<-c(2,2)}
 else{fen<-n2mfrow(ncol(tab.cat))
 }

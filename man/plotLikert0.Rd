@@ -6,15 +6,18 @@ Realise une analyse graphique d'une batterie d'echelles de Likert similaires, ev
 une variable categorielle.}
 
 \usage{
-plotLikert0(XX, yy=FALSE,...)
+plotLikert0(X,tri=0,adaptation=0,...)
 }
 
 \arguments{
-  \item{XX}{
-Le nom du jeu de donnees contenant la batterie d'echelles
+  \item{X}{
+Jeu de donnees contenant la batterie d'echelles
 }
-  \item{yy}{
-Le nom de la variable categorielle
+  \item{tri}{
+0= pas de tri
+}
+  \item{adaptation}{
+adaptation=0 : echelle des abscisses correspondant a min et max sur les donnes alors que adaptation=1 : echelle des abscisses correspondant a min et max des moyennes (meilleure visualisation des differences fines).
 }
 \item{...}{
 Divers renseignements graphiques

@@ -1,11 +1,14 @@
 cchalandise.DEP0 <- function () {
+Library("maps")
 defaults <- list(initial.response = NULL, initial.alternative = "two.sided", 
 initial.confidenceLevel = ".25", initial.variances = "FALSE")
 dialog.values <- getDialog("cchalandise.DEP0", defaults)
-initializeDialog(title = gettextRcmdr("Chalandise par departement"))
+initializeDialog(title = gettextRcmdr(paste("Chalandise par d", "\U00E9", "partement", 
+            sep = "")))
 variablesFrame <- tkframe(top)
 responseBox <- variableListBox(variablesFrame, Numeric(), 
-title = gettextRcmdr("Code department (ex: 69) ou postal (ex: 69002)"),
+title = gettextRcmdr(paste("Code d", "\U00E9", "partement (ex : 69) ou code postal (ex : 69002)", 
+            sep = "")),
 initialSelection = varPosn(dialog.values$initial.response, "numeric"))
 onOK <- function() {
 response <- getSelection(responseBox)
@@ -42,7 +45,8 @@ confidenceField <- ttkentry(confidenceFrame, width = "6",
 textvariable = confidenceLevel)
 radioButtons(optionsFrame, name = "variances", buttons = c("yes", 
 "no"), values = c("TRUE", "FALSE"),  
-labels = gettextRcmdr(c("Postal", "Departement")), title = gettextRcmdr("Code?"),
+labels = gettextRcmdr(c("Code postal", paste("D", "\U00E9", "partement", 
+            sep = ""))),title = gettextRcmdr("Code?"),
 initialValue = dialog.values$initial.variances)
 tkgrid(getFrame(responseBox), labelRcmdr(variablesFrame, text = "    "), 
 sticky = "nw")

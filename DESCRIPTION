@@ -1,18 +1,19 @@
 Package: RcmdrPlugin.pointG
 Type: Package
-Title: Rcmdr Graphical POINT of view for questionnaire data Plug-In
-Version: 0.2.1
-Date: 2012-02-14
+Title: Graphical POINT of view for questionnaire data Rcmdr Plug-In
+Version: 0.6.6
+Date: 2014-02-14
 Author: Stephane Champely <champely@univ-lyon1.fr>
 Maintainer: Stephane Champely <champely@univ-lyon1.fr>
-Depends: Rcmdr (>= 1.4-0), tcltk, MASS, lattice, qgraph, VIM, maps,
-        YaleToolkit, ade4, effects, RColorBrewer,Hmisc, car
-Suggests: rgl
-Description: This package provides an Rcmdr "plug-in" to analyze
-        questionnaire data.
+Depends: tcltk, Rcmdr, RColorBrewer
+Suggests: YaleToolkit, MASS, lattice, qgraph, maps, ade4, effects,
+        abind, nnet, vcd, car, gpairs, Hmisc
+Description: This package provides a Rcmdr "plug-in" to analyze questionnaire data.
 License: GPL (>= 2)
-Models:
+LazyLoad: yes
+LazyData: Yes
 Encoding: latin1
+Packaged: 2014-02-17 10:27:18 UTC; champely
+NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2012-02-17 07:38:35
-Packaged: 2012-02-17 04:51:05 UTC; champely
+Date/Publication: 2014-02-17 12:12:35

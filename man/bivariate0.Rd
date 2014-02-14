@@ -7,14 +7,14 @@ Serie d'analyses graphiques bivariees entre un jeu de donnees et une variable sp
 des graphiques adaptes sont choisis.
 }
 \usage{
-bivariate0(XX)
+bivariate0(X,y,...)
 }
 
 \arguments{
-  \item{XX}{
-Le nom du jeu de donnees contenant la serie de variables a expliquer
-et la variable explicative
-}
+  \item{X}{
+Le nom du jeu de donnees contenant la serie de variables a expliquer}
+\item{y}{La variable explicative}
+\item{...}{Différents paremtres graphiques}
 }
 
 

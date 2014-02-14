@@ -1,58 +1,33 @@
 
-bbigraphe0<-function () 
-{
-    newName <- activeDataSet()
-    initializeDialog(title = gettextRcmdr("Analyse graphique des relations"))
-    allVariablesFrame <- tkframe(top)
-    allVariables <- tclVar("1")
-    allVariablesCheckBox <- tkcheckbutton(allVariablesFrame, 
-        variable = allVariables)
-    variablesBox <- variableListBox(top, Variables(), selectmode = "multiple", 
-        initialSelection = NULL, title = gettextRcmdr("Variables (select one or more)"))
-    subsetVariable <- tclVar(gettextRcmdr("<all cases>"))
+bbigraphe0<-function(){
+Library("qgraph")
+
+    defaults <- list(initial.variables = NULL)
+    dialog.values <- getDialog("bbigraphe0", defaults)
+    initializeDialog(title = gettextRcmdr("Graphe des relations"))
+    variablesBox <- variableListBox(top, Variables(), title = gettextRcmdr("Variables (select one or more)"), 
+        selectmode = "multiple", initialSelection = varPosn (dialog.values$initial.variables, "all"))
     onOK <- function() {
-        if (!is.valid.name(newName)) {
-            errorCondition(recall = bbigraphe0, message = paste("\"", 
-                newName, "\" ", gettextRcmdr("is not a valid name."), 
-                sep = ""))
-            return()
-        }
-        selectVars <- if (tclvalue(allVariables) == "1") 
-            ""
-        else {
-            x <- getSelection(variablesBox)
-            if (0 == length(x)) {
-                errorCondition(recall = bbigraphe0, message = gettextRcmdr("No variables were selected."))
-                return()
-            }
-            paste(", select=c(", paste(x, collapse = ","), ")", 
-                sep = "")
-        }
+        variables <- getSelection(variablesBox)
         closeDialog()
-        cases <- tclvalue(subsetVariable)
-        selectCases <- if (cases == gettextRcmdr("<all cases>")) 
-            ""
-        else paste(", subset=", cases, sep = "")
-        if (selectVars == "" && selectCases == "") {
-            bigraphe0(newName)
+        if (length(variables) < 2) {
+            errorCondition(recall = bbigraphe0, message = gettextRcmdr("You must select at least two variables"))
             return()
         }
-        newn <- "D1"
-        command <- paste(newn, " <- subset(", ActiveDataSet(), 
-            selectCases, selectVars, ")", sep = "")
+        putDialog("bbigraphe0", list(initial.variables = variables))
+        .activeDataSet <- ActiveDataSet()
+        listvar <- paste(variables, collapse = "\",\"")
+        command <- paste("bigraphe0(", .activeDataSet, "[c(\"", 
+            listvar, "\")])", sep = "")
         logger(command)
-        result <- justDoIt(command)
-        bigraphe0(newn)
-        if (class(result)[1] != "try-error") 
-            tkfocus(CommanderWindow())
+        doItAndPrint(command)
+        activateMenus()
+        tkfocus(CommanderWindow())
     }
-    OKCancelHelp(helpSubject = "gpairs")
-    tkgrid(labelRcmdr(allVariablesFrame, text = gettextRcmdr("Include all variables")), 
-        allVariablesCheckBox, sticky = "w")
-    tkgrid(allVariablesFrame, sticky = "w")
-    tkgrid(labelRcmdr(top, text = gettextRcmdr("   OR"), fg = "red"), 
-        sticky = "w")
+    groupsBox(scatterPlot)
+    OKCancelHelp(helpSubject = "qgraph", reset = "bbigraphe0")
     tkgrid(getFrame(variablesBox), sticky = "nw")
-    tkgrid(buttonsFrame, sticky = "w")
-    dialogSuffix(rows = 6, columns = 1)
+    tkgrid(buttonsFrame, columnspan = 2, sticky = "w")
+    dialogSuffix(rows = 6, columns = 2)
 }
+

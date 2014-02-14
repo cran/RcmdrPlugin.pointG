@@ -7,7 +7,7 @@ multivariate0 <-function (XX, YY = NULL)
     X.NA <- X2[, -1]
     selection <- X2[, 1]
     dudi.X <- dudi.mix(X.NA,scannf=FALSE)
-windows()
+dev.new()
 barplot(dudi.X$eig,col=rev(brewer.pal(3,name="PuRd"))[1])
     plotNum(X.NA, dudi.X$li)
     plotCat2(X.NA, dudi.X$li)

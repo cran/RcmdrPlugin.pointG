@@ -1,6 +1,13 @@
 llinear0 <-function () 
 {
-    initializeDialog(title = gettextRcmdr("Modele lineaire"))
+Library("MASS")
+Library("nnet")
+Library("car")
+Library("effects")
+
+
+    initializeDialog(title = gettextRcmdr(paste("Mod","\U00E8","le lin", "\U00E9", "aire", 
+            sep = "")))
     .activeModel <- ActiveModel()
     .activeDataSet <- ActiveDataSet()
     currentModel <- if (!is.null(.activeModel)) 
@@ -117,13 +124,14 @@ llinear0 <-function ()
                 }
             }
         }
-        logger(paste(modelValue, " <- ", command, sep = ""))
-        assign(modelValue, justDoIt(command), envir = .GlobalEnv)
-        doItAndPrint(paste("Anova(", modelValue, ")", sep = ""))
+
+doItAndPrint(paste(modelValue, " <- ", command, sep = ""))
+doItAndPrint(paste("sortAnova(", modelValue, ")", sep = ""))
+
         activeModel(modelValue)
         tkfocus(CommanderWindow())
     }
-    OKCancelHelp(helpSubject = "linear", model = TRUE)
+    OKCancelHelp(helpSubject = "llinear0", model = TRUE,reset="llinear0")
     tkgrid(labelRcmdr(modelFrame, text = gettextRcmdr("Enter name for model:")), 
         model, sticky = "w")
     tkgrid(modelFrame, sticky = "w")
@@ -136,3 +144,4 @@ llinear0 <-function ()
     tkgrid(buttonsFrame, sticky = "w")
     dialogSuffix(rows = 7, columns = 1, focus = lhsEntry, preventDoubleClick = TRUE)
 }
+

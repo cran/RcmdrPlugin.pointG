@@ -6,7 +6,7 @@
 # can be included in any Rcmdr plug-in package to cause the package to load
 # the Rcmdr if it is not already loaded
 
-.First.lib <- function(libname, pkgname){
+.onAttach <- function(libname, pkgname){
     if (!interactive()) return()
     Rcmdr <- options()$Rcmdr
     plugins <- Rcmdr$plugins
@@ -15,14 +15,8 @@
         options(Rcmdr=Rcmdr)
         closeCommander(ask=FALSE, ask.save=TRUE)
         Commander()
-        }
     }
-
-
-
-
-
-
+}
 
 
 

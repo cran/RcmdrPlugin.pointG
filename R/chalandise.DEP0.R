@@ -1,7 +1,6 @@
 chalandise.DEP0<-function (CP, inc = 0.25,arrondi=FALSE) 
 {
-    data(XY.DEP)
-    if(arrondi){CP <- round(CP/1000)}
+    if(arrondi){CP <- floor(CP/1000)}
     tCP.round <- table(CP)
     CP.coord.x <- XY.DEP$x[as.numeric(names(tCP.round))]
     CP.coord.y <- XY.DEP$y[as.numeric(names(tCP.round))]

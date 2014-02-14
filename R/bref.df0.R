@@ -1,16 +1,17 @@
-bref.df0<-function (object, digits = max(3, getOption("digits") - 
-    3), ...) 
+bref.df0<-function (X, digits = max(3, getOption("digits") - 3), ...) 
 {
-    ncw <- function(x) {
+
+ ncw <- function(x) {
         z <- nchar(x, type = "w")
         if (any(na <- is.na(z))) {
             z[na] <- nchar(encodeString(z[na]), "b")
         }
         z
     }
-    z <- lapply(as.list(object), bref.variable0, digits=digits,...)
-    nv <- length(object)
-    nm <- names(object)
+
+    z <- lapply(X, bref.variable0, digits = digits,...)
+    nv <- ncol(X)
+    nm <- names(X)
     lw <- numeric(nv)
     nr <- max(unlist(lapply(z, NROW)))
     for (i in 1L:nv) {

@@ -1,57 +1,31 @@
-uunivariate0<-function () 
-{
-    newName <- activeDataSet()
-    initializeDialog(title = gettextRcmdr("Analyse graphique univariee"))
-    allVariablesFrame <- tkframe(top)
-    allVariables <- tclVar("1")
-    allVariablesCheckBox <- tkcheckbutton(allVariablesFrame, 
-        variable = allVariables)
-    variablesBox <- variableListBox(top, Variables(), selectmode = "multiple", 
-        initialSelection = NULL, title = gettextRcmdr("Variables (select one or more)"))
-    subsetVariable <- tclVar(gettextRcmdr("<all cases>"))
+uunivariate0 <- function (){
+    defaults <- list(initial.variables = NULL)
+    dialog.values <- getDialog("uunivariate0", defaults)
+    initializeDialog(title = gettextRcmdr(paste("Analyse graphique univari", "\U00E9", "e",sep = "")))
+
+    variablesBox <- variableListBox(top, Variables(), title = gettextRcmdr("Variables (select one or more)"), 
+        selectmode = "multiple", initialSelection = varPosn(dialog.values$initial.variables, 
+            "all"))
     onOK <- function() {
-        if (!is.valid.name(newName)) {
-            errorCondition(recall = uunivariate0, message = paste("\"", 
-                newName, "\" ", gettextRcmdr("is not a valid name."), 
-                sep = ""))
-            return()
-        }
-        selectVars <- if (tclvalue(allVariables) == "1") 
-            ""
-        else {
-            x <- getSelection(variablesBox)
-            if (0 == length(x)) {
-                errorCondition(recall = uunivariate0, message = gettextRcmdr("No variables were selected."))
-                return()
-            }
-            paste(", select=c(", paste(x, collapse = ","), ")", 
-                sep = "")
-        }
+        variables <- getSelection(variablesBox)
         closeDialog()
-        cases <- tclvalue(subsetVariable)
-        selectCases <- if (cases == gettextRcmdr("<all cases>")) 
-            ""
-        else paste(", subset=", cases, sep = "")
-        if (selectVars == "" && selectCases == "") {
-            univariate0(newName)
+        if (length(variables) < 1) {
+            errorCondition(recall = uunivariate0, message = gettextRcmdr("You must select a variable"))
             return()
         }
-        newn <- "D1"
-        command <- paste(newn, " <- subset(", ActiveDataSet(), 
-            selectCases, selectVars, ")", sep = "")
+        putDialog("uunivariate0", list(initial.variables = variables))
+        .activeDataSet <- ActiveDataSet()
+        listvar <- paste(variables, collapse = "\",\"")
+        command <- paste("univariate0(", .activeDataSet, "[c(\"", 
+            listvar, "\")])", sep = "")
         logger(command)
-        result <- justDoIt(command)
-        univariate0(newn)
-        if (class(result)[1] != "try-error") 
-            tkfocus(CommanderWindow())
+        justDoIt(command)
+        activateMenus()
+        tkfocus(CommanderWindow())
     }
-    OKCancelHelp(helpSubject = "univariate")
-    tkgrid(labelRcmdr(allVariablesFrame, text = gettextRcmdr("Include all variables")), 
-        allVariablesCheckBox, sticky = "w")
-    tkgrid(allVariablesFrame, sticky = "w")
-    tkgrid(labelRcmdr(top, text = gettextRcmdr("   OR"), fg = "red"), 
-        sticky = "w")
+    groupsBox(scatterPlot)
+    OKCancelHelp(helpSubject = "univariate0", reset = "uunivariate0")
     tkgrid(getFrame(variablesBox), sticky = "nw")
-    tkgrid(buttonsFrame, sticky = "w")
-    dialogSuffix(rows = 6, columns = 1)
+    tkgrid(buttonsFrame, columnspan = 2, sticky = "w")
+    dialogSuffix(rows = 6, columns = 2)
 }

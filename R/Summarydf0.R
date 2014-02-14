@@ -1,5 +1,6 @@
-Summarydf0<-function (object, maxsum = 7, digits = max(3, getOption("digits") - 
-    3), ...) 
+Summarydf0<-
+function (X, maxsum = 7, digits = max(3, getOption("digits") - 
+    3), pourcent=1,...) 
 {
     ncw <- function(x) {
         z <- nchar(x, type = "w")
@@ -8,9 +9,17 @@ Summarydf0<-function (object, maxsum = 7, digits = max(3, getOption("digits") -
         }
         z
     }
-    z <- lapply(as.list(object), Summaryvariable0, maxsum = maxsum,digits=digits,...)
-    nv <- length(object)
-    nm <- names(object)
+    z <- lapply(X, Summaryvariable0, maxsum = maxsum, digits = digits,pourcent=pourcent, 
+        ...)
+    nv <- ncol(X)
+    nm <- names(X)
+if(pourcent==1){
+for(j in 1:nv){
+if(is.factor(X[,j])){
+nm[j]<-paste(nm[j]," (%)",sep="")
+}
+}
+}
     lw <- numeric(nv)
     nr <- max(unlist(lapply(z, NROW)))
     for (i in 1L:nv) {

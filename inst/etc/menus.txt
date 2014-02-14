@@ -19,25 +19,28 @@ item    topMenu         cascade         "pointG"                                
     item    univMenu           command         "Graphiques à plat"                            uunivariate0              ""          ""
     item    univMenu           command         "Bref."                            bbref0              ""          ""
     item    univMenu           command         "Statistiques à plat"                                sSummarydf0                  ""          ""
-    item    univMenu           command         "Graphiques pour échelles de Likert"                        ppplotLikert0           ""          ""
+    item    univMenu           command         "Collection d'échelles de Likert"                        pplotLikert0           ""          ""
 
 
 # signal
     menu    signalMenu           demosMenu  ""                                              ""                          ""          ""
-    item    demosMenu  cascade         "Signaletique"                                signalMenu                       ""          ""
+    item    demosMenu  cascade         "Signalétique"                                signalMenu                       ""          ""
  
-   item    signalMenu           command         "Pyramide des ages"                        ppyramide0           ""          ""
-   item    signalMenu           command         "Donnees de cadrage"                        cadrage0           ""          ""
+   item    signalMenu           command         "Pyramide des âges"                        ppyramide0           ""          ""
+   item    signalMenu           command         "Données de cadrage"                        cadrage0           ""          ""
    item    signalMenu           command         "Cartographie chalandise par dép."                        cchalandise.DEP0           ""          ""
  
 
 # biv
     menu    bivMenu           demosMenu  ""                                              ""                          ""          ""
     item    demosMenu  cascade         "Analyses bivariées"                                bivMenu                       ""          ""
-   item    bivMenu           command         "Table croisée"                                twoWayTable0                  ""          ""
+   item    bivMenu           command         "Tableau croisé"                                twoWayTable0                  ""          ""
     item    bivMenu           command         "Graphiques croisés en saucisson"                            bbbivariate0              ""          ""
   item    bivMenu           command         "Statistiques croisées en saucisson"                                bbbisummarize0                  ""          ""
-    item    bivMenu           command         "Graphiques croisés complet"                        ccroise0           ""          ""
+item    bivMenu           command         "Echelles de Likert croisées en saucisson"                                pplotLikert1                  ""          ""
+item    bivMenu           command         "Profils de modalités en saucisson"                                yyule0                  ""          ""
+
+    item    bivMenu           command         "Matrice de graphiques croisés"                        ccroise0           ""          ""
    item    bivMenu           command         "Graphique des relations"                        bbigraphe0           ""          ""
  
 
@@ -47,9 +50,10 @@ item    topMenu         cascade         "pointG"                                
     menu    linMenu           demosMenu  ""                                              ""                          ""          ""
     item    demosMenu  cascade         "Modélisation linéaire"                                linMenu                       ""          ""
     item    linMenu           command         "Ajustement"                                llinear0                  ""          ""
-    item    linMenu           command         "Graphique des effets"                        effectPlots           ""          ""
+    item    linMenu           command         "Graphique des effets (simultané)"                        effectPlots           ""          ""
+    item    linMenu           command         "Graphique des effets (interactif)"                        effectPlotsTRUE           ""          ""
 
 # exp
     menu    facMenu           demosMenu  ""                                              ""                          ""          ""  
-   item    demosMenu  cascade         "Exploratoire multivarie"                                facMenu                       ""          ""
- item    facMenu       command         "Factoriel multivarie"   mmultivariate0 ""                      ""
+   item    demosMenu  cascade         "Exploratoire multivarié"                                facMenu                       ""          ""
+ item    facMenu       command         "Factoriel multivarié"   mmultivariate0 ""                      ""

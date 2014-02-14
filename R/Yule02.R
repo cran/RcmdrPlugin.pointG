@@ -1,8 +1,9 @@
-Yule2<-
-function (df, levX, varX, varY) 
+Yule02<-
+function (X,Y,levX,nameY) 
 {
-    X <- df[, varX]
-    Y <- df[, varY]
+# calcul pour la variable Y quantitative du Q de Yule
+# La variable Y est transformée en variable binaire
+# en utilsant comme coupure la moyenne tronquée
     Ycut <- cut(Y, breaks = c(min(Y, na.rm = TRUE) - 1, mean(Y, 
         t = 0.2, na.rm = TRUE), max(Y, na.rm = TRUE)), label = c("Moins", 
         "Plus"))
@@ -25,6 +26,6 @@ function (df, levX, varX, varY)
         result[j, 4] <- chisq.test(matrix(c(a, c, b, d), ncol = 2))$p.value
     }
     colnames(result) <- c("n", "Q", "se(Q)", "p")
-    rownames(result) <- paste(varY, levY, sep = "_")
+    rownames(result) <- paste(nameY, levY, sep = "_")
     result
 }

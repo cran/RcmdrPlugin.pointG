@@ -1,58 +1,45 @@
 aaggr0<-function () 
 {
-    newName <- activeDataSet()
-    initializeDialog(title = gettextRcmdr("Analyse graphique des valeurs manquantes"))
-    allVariablesFrame <- tkframe(top)
-    allVariables <- tclVar("1")
-    allVariablesCheckBox <- tkcheckbutton(allVariablesFrame, 
-        variable = allVariables)
-    variablesBox <- variableListBox(top, Variables(), selectmode = "multiple", 
-        initialSelection = NULL, title = gettextRcmdr("Variables (select one or more)"))
-    subsetVariable <- tclVar(gettextRcmdr("<all cases>"))
+Library("YaleToolkit")
+    defaults <- list(initial.variable = NULL, initial.mean = "0",initial.effectif="0")
+    dialog.values <- getDialog("aaggr0", defaults)
+    initializeDialog(title = gettextRcmdr(paste("Donn", "\U00E9", "es manquantes",sep = "")))
+    variableBox <- variableListBox(top, Variables(), title = gettextRcmdr("Variables (select one or more)"), 
+        selectmode = "multiple", initialSelection = varPosn(dialog.values$initial.variable, 
+            "all"))
+    checkBoxes(frame = "checkBoxFrame", boxes = c("mean","effectif"), initialValues = c(dialog.values$initial.mean,dialog.values$initial.effectif), 
+        labels = gettextRcmdr(c("Rangement en fonction des effectifs","Effectifs (plutot que %)")))
+  
+ 
     onOK <- function() {
-        if (!is.valid.name(newName)) {
-            errorCondition(recall = uunivariate, message = paste("\"", 
-                newName, "\" ", gettextRcmdr("is not a valid name."), 
-                sep = ""))
-            return()
-        }
-        selectVars <- if (tclvalue(allVariables) == "1") 
-            ""
-        else {
-            x <- getSelection(variablesBox)
-            if (0 == length(x)) {
-                errorCondition(recall = uunivariate, message = gettextRcmdr("No variables were selected."))
-                return()
-            }
-            paste(", select=c(", paste(x, collapse = ","), ")", 
-                sep = "")
-        }
+        variables <- getSelection(variableBox)
+        meanVar <- tclvalue(meanVariable)
+        effectifVar <- tclvalue(effectifVariable)
+        putDialog("aaggr0", list(initial.variable = variables, 
+            initial.mean = meanVar,initial.effectif=effectifVar))
         closeDialog()
-        cases <- tclvalue(subsetVariable)
-        selectCases <- if (cases == gettextRcmdr("<all cases>")) 
-            ""
-        else paste(", subset=", cases, sep = "")
-        if (selectVars == "" && selectCases == "") {
-            aggr(get(newName),plot=TRUE,col=rev(brewer.pal(3,name="PuRd"))[c(1,2)])
-
+        if (length(variables) == 0) {
+            errorCondition(recall = aaggr0, message = gettextRcmdr("You must select a variable"))
             return()
         }
-        newn <- "D1"
-        command <- paste(newn, " <- subset(", ActiveDataSet(), 
-            selectCases, selectVars, ")", sep = "")
+        .activeDataSet <- ActiveDataSet()
+        listvar <- paste(variables, collapse = "\",\"")
+        command <- paste("plotMissing(", .activeDataSet, "[,c(\"", 
+            listvar, "\")],tri=", meanVar, ",effectif=",effectifVar,")", sep = "")
         logger(command)
-        result <- justDoIt(command)
-        aggr(get(newn),plot=TRUE,col=rev(brewer.pal(3,name="PuRd"))[c(1,2)],ylabs=c("% de valeurs manquantes","Combinaisons"),cex.ax=0.5)
-        if (class(result)[1] != "try-error") 
-            tkfocus(CommanderWindow())
+        justDoIt(command)
+
+       command <- paste("statMissing(", .activeDataSet, "[,c(\"", 
+            listvar, "\")],tri=", meanVar, ",effectif=",effectifVar,")", sep = "")
+        doItAndPrint(command)
+
+        activateMenus()
+        tkfocus(CommanderWindow())
     }
-    OKCancelHelp(helpSubject = "aggr")
-    tkgrid(labelRcmdr(allVariablesFrame, text = gettextRcmdr("Include all variables")), 
-        allVariablesCheckBox, sticky = "w")
-    tkgrid(allVariablesFrame, sticky = "w")
-    tkgrid(labelRcmdr(top, text = gettextRcmdr("   OR"), fg = "red"), 
-        sticky = "w")
-    tkgrid(getFrame(variablesBox), sticky = "nw")
+    OKCancelHelp(helpSubject = "is.na", reset = "aaggr0")
+    tkgrid(getFrame(variableBox), sticky = "nw")
+    tkgrid(checkBoxFrame, sticky = "w")
+
     tkgrid(buttonsFrame, sticky = "w")
-    dialogSuffix(rows = 6, columns = 1)
+    dialogSuffix(rows = 2, columns = 1)
 }

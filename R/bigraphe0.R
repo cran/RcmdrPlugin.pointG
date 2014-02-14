@@ -1,7 +1,6 @@
 
-bigraphe0<-function (XX) 
+bigraphe0<-function (X) 
 {
-    X <- get(XX)
     p <- ncol(X)
     noms <- colnames(X)
     p.value <- matrix(0, nrow = p, ncol = p)

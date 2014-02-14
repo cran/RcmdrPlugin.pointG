@@ -3,19 +3,39 @@
 
 
 
+\alias{vpAFC}
+\alias{mapAFC}
+\alias{tauK}
+
+\alias{statMissing}
 
 \alias{pem}
+\alias{localYule}
 
-\alias{ppplotLikert0}
+\alias{effectPlotsTRUE}
+\alias{sortAnova}
+
+
+\alias{cohenW}
+\alias{cramerV}
+
+
+\alias{pplotLikert0}
+\alias{pplotLikert1}
+
+\alias{plotLikert1}
+
+\alias{statLikert0}
+\alias{statLikert1}
+
+\alias{plotMissing}
 
 \alias{bbref0}
 \alias{bref.df0}
-\alias{bref.variable0}
 
 
 \alias{sSummarydf0}
 \alias{Summarydf0}
-\alias{Summaryvariable0}
 \alias{Summarynumeric0}
 \alias{Summaryfactor0}
 \alias{Summaryordered0}
@@ -45,17 +65,20 @@
 
 \alias{bbbisummarize0}
 
-\alias{llinear0}
-
 \alias{plotTabCont0}
 \alias{twoWayTable0}
 
 \alias{ccroise0}
 
-\alias{Yule1}
-\alias{Yule2}
-\alias{Yule3}
-\alias{Yule4}
+\alias{Yule01}
+\alias{Yule02}
+\alias{Yule04}
+\alias{yyule0}
+
+
+\alias{enConstruction}
+\alias{globals}
+
 
 
 \description{Internal RcmdrPlugin.pointG objects.}

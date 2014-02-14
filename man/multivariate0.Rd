@@ -36,6 +36,7 @@ Cette fonction utilise grandement des elements du package ade4.
 
 
 \examples{
+require(MASS)
 data(survey)
 s1<-survey[,1:5]
 s2<-survey[,6:12]

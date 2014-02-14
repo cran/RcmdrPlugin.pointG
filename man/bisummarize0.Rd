@@ -7,23 +7,24 @@ Selon la nature de ces variables des calculs differents sont effectues.
 
 }
 \usage{
-bisummarize0(XX)
+bisummarize0(X,y,tri=FALSE)
 }
 
 \arguments{
-  \item{XX}{
-Le nom du jeu de donnees contenant les variables a expliquer
-et la variable explicative
+  \item{X}{
+Le nom du jeu de donnees contenant les variables a expliquer}
+\item{y}{La variable explicative
+}
+\item{tri}{Valeur logique pour (ne pas) trier les variables en fonction de la p-value
 }
 }
 
 \value{
-Une liste comprenant les éléments
-\item{names}{Les noms des variables a expliquer}
+Un tableau dont les lignes sont les variables à expliquer et les colonnes les éléments
 \item{CR}{Carres des correlations entre les sous-espaces vectoriels engendres par les deux variables (ou les indicatrices 
 pour une variable categorielle)}
 \item{ES}{Tailles d'effet au sens de Cohen : w, f ou r}
-\item{CR}{Valeurs conventionnelles correspondant aux tailles d'effet : XS, S, M, L, XL}
+\item{Size}{Valeurs conventionnelles correspondant aux tailles d'effet : XS, S, M, L, XL}
 \item{p.value}{Les p-values des tests correspondants}
 }
 \references{

@@ -1,8 +1,6 @@
-Yule1<-
-function (df, levX, varX, varY) 
+Yule01<-
+function (X,Y, levX,nameY) 
 {
-    X <- df[, varX]
-    Y <- df[, varY]
     CT <- table(X, Y)
     sumX <- apply(CT, 1, sum)
     sumY <- apply(CT, 2, sum)
@@ -22,6 +20,6 @@ function (df, levX, varX, varY)
         result[j, 4] <- chisq.test(matrix(c(a, c, b, d), ncol = 2))$p.value
     }
     colnames(result) <- c("n", "Q", "se(Q)", "p")
-    rownames(result) <- paste(varY, levY, sep = "_")
+    rownames(result) <- paste(nameY,levY, sep = "_")
     result
 }

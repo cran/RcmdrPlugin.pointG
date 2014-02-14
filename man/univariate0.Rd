@@ -6,13 +6,13 @@
 Selon le type de donnees, un graphique adapte est employe.
 }
 \usage{
-univariate0(XX)
+univariate0(X)
 }
 
 
 \arguments{
-  \item{XX}{
-Le nom du fichier de donnees
+  \item{X}{
+Fichier de donnees
 }
 }
 
